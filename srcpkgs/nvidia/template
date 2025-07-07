@@ -3,7 +3,7 @@
 _desc="NVIDIA drivers for linux"
 
 pkgname=nvidia
-version=550.78
+version=570.169
 revision=1
 maintainer="Andrew Benson <abenson+void@gmail.com>"
 license="custom:NVIDIA Proprietary"
@@ -19,7 +19,7 @@ conflicts="xserver-abi-video>25_1 nvidia470>=0 nvidia390>=0"
 
 _pkg="NVIDIA-Linux-x86_64-${version}"
 distfiles="http://uk.download.nvidia.com/XFree86/Linux-x86_64/${version}/${_pkg}.run"
-checksum=34070434527ec9d575483e7f11ca078e467e73f6defc54366ecfbdcfe4a3bf73
+checksum=5f32a847795cc5c3f980f79189abac070d91481d7bd3601c02c2829dd3873765
 # subpackages need to be processed in this specific order
 subpackages="nvidia-gtklibs nvidia-dkms nvidia-firmware nvidia-opencl nvidia-libs nvidia-libs-32bit"
 depends="nvidia-libs-${version}_${revision}
@@ -132,11 +132,11 @@ do_install() {
 		${DESTDIR}/usr/lib/nvidia/xorg/libglxserver_nvidia.so.1
 
 	# Wayland/GBM
-	vinstall libnvidia-egl-wayland.so.1.1.13 755 usr/lib
-	ln -sf libnvidia-egl-wayland.so.1.1.13 \
+	vinstall libnvidia-egl-wayland.so.1.1.19 755 usr/lib
+	ln -sf libnvidia-egl-wayland.so.1.1.19 \
 		${DESTDIR}/usr/lib/libnvidia-egl-wayland.so.1
-	vinstall libnvidia-egl-gbm.so.1.1.1 755 usr/lib
-	ln -sf libnvidia-egl-gbm.so.1.1.1 \
+	vinstall libnvidia-egl-gbm.so.1.1.2 755 usr/lib
+	ln -sf libnvidia-egl-gbm.so.1.1.2 \
 		${DESTDIR}/usr/lib/libnvidia-egl-gbm.so.1
 
 	vmkdir usr/share/glvnd/egl_vendor.d
@@ -210,6 +210,12 @@ do_install() {
 	mkdir -p usr/share/dbus-1/system.d
 	vinstall nvidia-dbus.conf 644 usr/share/dbus-1/system.d
 	vbin systemd/nvidia-sleep.sh
+	mkdir -p usr/libexec/elogind/system-sleep
+	vinstall ${FILESDIR}/nvidia-sleep.sh 0755 usr/libexec/elogind/system-sleep nvidia.sh
+	vmkdir etc/zzz.d/suspend
+	vinstall ${FILESDIR}/nvidia-suspend 0755 etc/zzz.d/suspend
+	vmkdir etc/zzz.d/resume
+	vinstall ${FILESDIR}/nvidia-resume 0755 etc/zzz.d/resume
 
 	# opencl pkg
 	vinstall nvidia.icd 644 etc/OpenCL/vendors
@@ -273,6 +279,7 @@ do_install() {
 
 	# nvvm compiler
 	vinstall libnvidia-nvvm.so.${version} 755 usr/lib
+	ln -s /usr/lib/libnvidia-nvvm.so.${version} ${DESTDIR}/usr/lib/libnvidia-nvvm.so.4
 
 	# Libraries (64bit)
 	_install_libs usr/lib
@@ -293,6 +300,7 @@ nvidia-libs-32bit_package() {
 	short_desc="${_desc} - common libraries (32bit)"
 	# manually set 32bit depends for libglvnd
 	depends="glibc-32bit>=0 libX11-32bit>=0 libXext-32bit>=0 libglvnd-32bit>=0"
+	noverifyrdeps=yes
 	conflicts="nvidia470-libs-32bit>=0 nvidia390-libs-32bit>=0"
 	repository="multilib/nonfree"
 	pkg_install() {

@@ -1,6 +1,6 @@
 # Template file for 'gsettings-desktop-schemas'
 pkgname=gsettings-desktop-schemas
-version=45.0
+version=48.0
 revision=1
 build_helper="gir"
 build_style=meson
@@ -13,7 +13,7 @@ license="LGPL-2.1-or-later"
 homepage="https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas"
 changelog="https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas/-/raw/master/NEWS"
 distfiles="${GNOME_SITE}/gsettings-desktop-schemas/${version%.*}/gsettings-desktop-schemas-${version}.tar.xz"
-checksum=365c8d04daf79b38c8b3dc9626349a024f9e4befdd31fede74b42f7a9fbe0ae2
+checksum=e68f155813bf18f865a8b2c8e9d473588b6ccadcafbb666ab788857c6c2d1bd3
 
 # Package build options
 build_options="gir"

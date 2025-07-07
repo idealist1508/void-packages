@@ -1,6 +1,6 @@
 # Template file for 'atuin'
 pkgname=atuin
-version=18.2.0
+version=18.6.1
 revision=1
 build_style=cargo
 build_helper=qemu
@@ -9,16 +9,21 @@ make_check_args="--
  --skip sync
  --skip change_password
  --skip multi_user_test"
-make_install_args="--path atuin"
+make_install_args="--path crates/atuin"
 hostmakedepends="pkg-config sqlite-devel"
 makedepends="sqlite-devel"
 short_desc="Magical shell history"
-maintainer="Marcin Puc <tranzystorek.io@protonmail.com>"
+maintainer="tranzystorekk <tranzystorek.io@protonmail.com>"
 license="MIT"
 homepage="https://atuin.sh"
 changelog="https://raw.githubusercontent.com/atuinsh/atuin/main/CHANGELOG.md"
 distfiles="https://github.com/atuinsh/atuin/archive/refs/tags/v${version}.tar.gz"
-checksum=7fb87902ce09af2d29459e9158bc83c18519690d555259709cab40d9ee75b024
+checksum=aba26698471ef7ad2757416d01fcc327d3bd800c58cc3fcae638e625524e1b40
+
+post_patch() {
+	cargo update --package ring@0.17.14 --precise 0.17.9
+	cargo update --package cc@1.2.16 --precise 1.1.37
+}
 
 post_install() {
 	vlicense LICENSE

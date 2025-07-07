@@ -1,6 +1,6 @@
 # Template file for 'ca-certificates'
 pkgname=ca-certificates
-version=20240203+3.98
+version=20250419+3.113
 revision=1
 _nss_version=${version#*+}
 bootstrap=yes
@@ -14,8 +14,8 @@ license="GPL-2.0-or-later, MPL-2.0"
 homepage="https://wiki.mozilla.org/NSS:Root_certs"
 distfiles="${DEBIAN_SITE}/main/c/${pkgname}/${pkgname}_${version%+*}.tar.xz
  ${MOZILLA_SITE}/security/nss/releases/NSS_${_nss_version//\./_}_RTM/src/nss-${_nss_version}.tar.gz"
-checksum="3286d3fc42c4d11b7086711a85f865b44065ce05cf1fb5376b2abed07622a9c6
- f549cc33d35c0601674bfacf7c6ad683c187595eb4125b423238d3e9aa4209ce"
+checksum="33b44ef78653ecd3f0f2f13e5bba6be466be2e7da72182f737912b81798ba5d2
+ acef06b512d3bd81c87a63b3c8653d258bb689d2191fc0e64decf5a1efa01c0f"
 
 post_extract() {
 	cp ${FILESDIR}/* $build_wrksrc/mozilla

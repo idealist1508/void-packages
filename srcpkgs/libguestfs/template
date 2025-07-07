@@ -1,7 +1,7 @@
 # Template file for 'libguestfs'
 pkgname=libguestfs
-version=1.52.0
-revision=1
+version=1.54.1
+revision=3
 _version_short=${version%.*}
 build_style=gnu-configure
 make_install_args="INSTALLDIRS=vendor"
@@ -22,7 +22,8 @@ maintainer="Andrea Brancaleoni <abc@pompel.me>"
 license=" GPL-2.0-or-later"
 homepage="http://libguestfs.org"
 distfiles="http://libguestfs.org/download/${_version_short}-stable/${pkgname}-${version}.tar.gz"
-checksum=2f8d9b8eb032b980ce9c4ae8ea87f41d5d9056c7bfa20c30aa0a2cd86adf70dc
+checksum=6e3fc6ac192675f7bc2840a561bb36a36d3d5a8dfa7f88ea2f53f8cf602a177e
+make_check=no # many tests need guest applicance
 
 conf_files="etc/libguestfs-tools.conf"
 

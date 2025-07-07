@@ -1,19 +1,20 @@
 # Template file for 'sysstat'
 pkgname=sysstat
-version=12.7.5
+version=12.7.7
 revision=1
 build_style=gnu-configure
 configure_args="--enable-copy-only --disable-file-attr
- --with-systemdsystemunitdir= --enable-install-cron"
+ --with-systemdsystemunitdir= --enable-install-cron --enable-sensors"
 conf_files="/etc/default/sysstat /etc/default/sysstat.ioconf"
 hostmakedepends="pkg-config gettext"
+makedepends="libsensors-devel"
 depends="lm_sensors"
 short_desc="Collection of performance monitoring tools"
 maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="GPL-2.0-or-later"
 homepage="https://sysstat.github.io/"
 distfiles="https://sysstat.github.io/sysstat-packages/sysstat-${version}.tar.xz"
-checksum=57664040a549d33bb06a1121c7124d4cadd9b8b35f815856c194393047cd4d6b
+checksum=79bddfca14130797c02aa4d819528aaa243c879e5bbd1c404cd43c9953a8cdf9
 
 post_extract() {
 	vsed -i 's/lib64/lib/' configure

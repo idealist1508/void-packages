@@ -1,9 +1,9 @@
 # Template file for 'qtractor'
 pkgname=qtractor
-version=0.9.90
+version=1.5.6
 revision=1
-_clap_tag=1.2.0
-_vst3sdk_tag=3.7.10_build_14
+_clap_tag=1.2.6
+_vst3sdk_tag=3.7.13_build_42
 create_wrksrc=yes
 build_wrksrc="qtractor"
 build_style=cmake
@@ -11,25 +11,25 @@ hostmakedepends="pkg-config qt6-base qt6-tools"
 makedepends="aubio-devel dssi-devel jack-devel ladspa-sdk liblo-devel
  libmad-devel libsamplerate-devel libsndfile-devel libvorbis-devel lilv-devel
  qt6-base-devel qt6-svg-devel rubberband-devel sratom-devel"
-depends="desktop-file-utils dssi hicolor-icon-theme jack lv2"
+depends="desktop-file-utils dssi hicolor-icon-theme lv2"
 short_desc="Audio/MIDI multi-track sequencer application written in C++/Qt"
 maintainer="Matthias von Faber <mvf@gmx.eu>"
 # qtractor is GPL-2.0-or-later. VST3SDK is GPL-3.0-only, with some parts BSD-3-Clause.
 license="GPL-3.0-only, BSD-3-Clause"
 homepage="https://qtractor.org"
 changelog="https://raw.githubusercontent.com/rncbc/qtractor/master/ChangeLog"
-distfiles="https://github.com/rncbc/qtractor/archive/qtractor_${version//./_}.tar.gz
- https://github.com/free-audio/clap/archive/refs/tags/$_clap_tag.tar.gz
- https://github.com/steinbergmedia/vst3sdk/archive/v$_vst3sdk_tag.tar.gz>vst3sdk-v${_vst3sdk_tag}.tar.gz
- https://github.com/steinbergmedia/vst3_base/archive/v$_vst3sdk_tag.tar.gz>vst3_base-v${_vst3sdk_tag}.tar.gz
- https://github.com/steinbergmedia/vst3_pluginterfaces/archive/v$_vst3sdk_tag.tar.gz>vst3_pluginterfaces-v${_vst3sdk_tag}.tar.gz
- https://github.com/steinbergmedia/vst3_public_sdk/archive/v$_vst3sdk_tag.tar.gz>vst3_public_sdk-v${_vst3sdk_tag}.tar.gz"
-checksum="ce4941baf3b39ba7dc807d23c4dd97c18d3de000ed5b9f4f8dfbee183866052e
- 7abd3468e73aa5941d73e7bd486881923b00f9940ce7a957d690def3733ac3ee
- 2ecf1dfad6a0b4ca23861ac2928e9fd919558236ae2d1ea1d9b51032a8d5b1fd
- 1f0fea72d33d03c5256772414ae400ab42e236240e5cadb3e8e909e071d5949d
- 71cf1f5f51d356b4f874f1804ff55255b391631d5fbec1c2c27579530da9e1a4
- af58e6ee7d102ec74829aacac367cdd2b8bd541511305632e02fac9cfa7cb6c8"
+distfiles="https://github.com/rncbc/qtractor/archive/refs/tags/v${version}.tar.gz
+ https://github.com/free-audio/clap/archive/refs/tags/${_clap_tag}.tar.gz
+ https://github.com/steinbergmedia/vst3sdk/archive/refs/tags/v${_vst3sdk_tag}.tar.gz>vst3sdk-v${_vst3sdk_tag}.tar.gz
+ https://github.com/steinbergmedia/vst3_base/archive/refs/tags/v${_vst3sdk_tag}.tar.gz>vst3_base-v${_vst3sdk_tag}.tar.gz
+ https://github.com/steinbergmedia/vst3_pluginterfaces/archive/refs/tags/v${_vst3sdk_tag}.tar.gz>vst3_pluginterfaces-v${_vst3sdk_tag}.tar.gz
+ https://github.com/steinbergmedia/vst3_public_sdk/archive/refs/tags/v${_vst3sdk_tag}.tar.gz>vst3_public_sdk-v${_vst3sdk_tag}.tar.gz"
+checksum="8d11e9da21ac7a953bebbb39e940542b70d44a3263d97e7d24385413eba8db2e
+ 6548b5831ad9e92551c752753e535b18fead4001165ef1df8e643efefa7133b7
+ 273f2b70aa28d8746228c6e3ba927a9c3ba34c784f0ebc37e0771feb732fab9e
+ d9c7ac845fd0f921bb269db4bcecacc24c5f1d4a8d40c1d3bf601e4dd493616d
+ eda76660e26e0f1fcaf2b00ba24f0a4ce3b2eb1a5fda5649b2cf64caa1616bc4
+ 90ae4a5376b49301c711796dbc443b7521fea91eedbba441e4385d5e64e48baa"
 
 post_extract() {
 	cd $wrksrc

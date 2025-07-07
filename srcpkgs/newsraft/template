@@ -1,19 +1,20 @@
 # Template file for 'newsraft'
 pkgname=newsraft
-version=0.24
+version=0.31
 revision=1
 build_style=gnu-makefile
 make_install_args="EXAMPLES_DIR=${DESTDIR}/usr/share/examples/newsraft"
 hostmakedepends="scdoc"
-makedepends="libcurl-devel expat-devel gumbo-parser-devel ncurses-devel sqlite-devel yajl-devel"
+makedepends="libcurl-devel expat-devel gumbo-parser-devel sqlite-devel"
 short_desc="Feed reader with ncurses user interface"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="ISC"
 homepage="https://codeberg.org/newsraft/newsraft"
-changelog="https://codeberg.org/newsraft/newsraft/releases"
+changelog="https://codeberg.org/newsraft/newsraft/raw/branch/main/doc/changes.md"
 distfiles="https://codeberg.org/newsraft/newsraft/archive/newsraft-${version}.tar.gz"
-checksum=1bc072350cee8960880cef0f749922c9474d91c9df467a0645b1632fbddb48f5
+checksum=de0d96664d9a276dbe58cf4b44a6861bc18b6fd4c0f41a97450c5b3509904ae8
 
 post_install() {
 	vlicense doc/license.txt
+	vinstall doc/newsraft.desktop 644 usr/share/applications
 }

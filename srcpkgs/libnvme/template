@@ -1,6 +1,6 @@
 # Template file for 'libnvme'
 pkgname=libnvme
-version=1.8
+version=1.13
 revision=1
 build_style=meson
 configure_args="-Ddocs=man"
@@ -11,8 +11,9 @@ short_desc="C Library for NVM Express on Linux"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="LGPL-2.1-or-later"
 homepage="https://github.com/linux-nvme/libnvme"
+changelog="https://github.com/linux-nvme/libnvme/releases"
 distfiles="https://github.com/linux-nvme/libnvme/archive/v${version}.tar.gz"
-checksum=d59939a280eec41eb7a716e1681d0d0c612099385204ffb55d07134a6be08d75
+checksum=f083c21f525644a2bcca6d367d96fab813de880cba9f1746a850f3a8692a5980
 
 libnvme-devel_package() {
 	depends="${sourcepkg}>=${version}_${revision} json-c-devel openssl-devel"

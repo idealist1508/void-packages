@@ -1,16 +1,21 @@
 # Template file for 'usql'
 pkgname=usql
-version=0.17.5
+version=0.19.21
 revision=1
 build_style=go
 go_import_path=github.com/xo/usql
 go_ldflags="-X github.com/xo/usql/text.CommandVersion=${version}"
 short_desc="Universal command-line interface for SQL databases"
-maintainer="Orphaned <orphan@voidlinux.org>"
+maintainer="icp <pangolin@vivaldi.net>"
 license="MIT"
 homepage="https://github.com/xo/usql"
 distfiles="https://github.com/xo/usql/archive/refs/tags/v${version}.tar.gz"
-checksum=caa3b33e4a5742602c7090cdcff7e0831c39b9d7acaa65c1a5cce13378fbcca2
+checksum=608558102283075114f379b7405a4b295a62b56962a1a5251ee4016056584363
+
+do_check() {
+	go test -p "${XBPS_MAKEJOBS}" -v -tags "${go_build_tags}" -ldflags "${go_ldflags}" \
+		$(go list ./... | grep -v /drivers)
+}
 
 post_install() {
 	vlicense LICENSE

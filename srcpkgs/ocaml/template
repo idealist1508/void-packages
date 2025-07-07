@@ -1,24 +1,18 @@
 # Template file for 'ocaml'
 pkgname=ocaml
-version=5.1.1
+version=5.3.0
 revision=1
 build_style="gnu-configure"
 configure_args="--with-pic --libdir=/usr/lib/ocaml"
 makedepends="libzstd-devel"
 depends="${makedepends}"
 short_desc="Main implementation of the OCaml language"
-maintainer="Leah Neukirchen <leah@vuxu.org>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="QPL-1.0, LGPL-2.1-only"
 homepage="http://ocaml.org/"
-distfiles="https://github.com/ocaml/ocaml/archive/${version}.tar.gz"
-checksum=57f7b382b3d71198413ede405d95ef3506f1cdc480cda1dca1e26b37cb090e17
+distfiles="https://github.com/ocaml/ocaml/archive/refs/tags/${version}.tar.gz"
+checksum=eb9eab2f21758d3cfb1e78c7f83f0b4dd6302824316aba4abee047a5a4f85029
 nocross=yes
-
-case "$XBPS_TARGET_MACHINE" in
-	# native code platforms
-	x86_64*|aarch64*|riscv64*) make_build_target="world.opt";;
-	*) make_build_target="world";;
-esac
 
 export ASPP="cc -c"
 

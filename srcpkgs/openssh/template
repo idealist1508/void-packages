@@ -1,6 +1,6 @@
 # Template file for 'openssh'
 pkgname=openssh
-version=9.7p1
+version=10.0p2
 revision=1
 build_style=gnu-configure
 configure_args="--datadir=/usr/share/openssh
@@ -24,8 +24,9 @@ short_desc="OpenSSH free Secure Shell (SSH) client and server implementation"
 maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="BSD-2-Clause, ISC"
 homepage="https://www.openssh.com"
+changelog="https://www.openssh.com/releasenotes.html"
 distfiles="https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/${pkgname}-${version}.tar.gz"
-checksum=490426f766d82a2763fcacd8d83ea3d70798750c7bd2aff2e57dc5660f773ffd
+checksum=021a2e709a0edf4250b1256bd5a9e500411a90dddabea830ed59cef90eb9d85c
 conf_files="/etc/ssh/moduli /etc/ssh/ssh_config /etc/ssh/sshd_config /etc/pam.d/sshd"
 make_dirs="
  /var/chroot/ssh 0755 root root

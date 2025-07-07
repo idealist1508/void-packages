@@ -1,16 +1,17 @@
 # Template file for 'gopls'
 pkgname=gopls
-version=0.15.3
+version=0.19.1
 revision=1
 build_wrksrc=gopls
 build_style=go
 go_import_path=golang.org/x/tools/gopls
+checkdepends="git"
 short_desc="Official language server for the Go language"
 maintainer="Bnyro <bnyro@tutanota.com>"
 license="BSD-3-Clause"
 homepage="https://github.com/golang/tools/tree/master/gopls"
 distfiles="https://github.com/golang/tools/archive/refs/tags/gopls/v${version}.tar.gz"
-checksum=7fb0a43ff5e562089ca0ec3e8e7819dd205977758c02ea9bded05f56d5080a54
+checksum=11fc066d0ad6627668ab4dc4d4a34e6e0b47de51bfcc86c3f58018a020e7a071
 
 post_install() {
 	vlicense ../LICENSE

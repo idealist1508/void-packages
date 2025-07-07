@@ -1,6 +1,6 @@
 # Template file for 'corrosion'
 pkgname=corrosion
-version=0.4.4
+version=0.5.1
 revision=1
 build_style=cmake
 hostmakedepends="cargo"
@@ -9,7 +9,7 @@ maintainer="John <me@johnnynator.dev>"
 license="MIT"
 homepage="https://github.com/corrosion-rs/corrosion"
 distfiles="https://github.com/corrosion-rs/corrosion/archive/refs/tags/v${version}.tar.gz"
-checksum=bf3981d0e066f2c877949ec59d9ed6cb193ae4ff615b73f20c64a5de68fc06ab
+checksum=843334a9f0f5efbc225dccfa88031fe0f2ec6fd787ca1e7d55ed27b2c25d9c97
 
 do_check() {
 	cd build

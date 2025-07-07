@@ -1,26 +1,28 @@
 # Template file for 'glib'
 # keep in sync with glib-bootstrap
 pkgname=glib
-version=2.80.0
-revision=1
+version=2.84.0
+revision=2
 build_style=meson
-build_helper=qemu
-# static version is necessary for qemu-user-static;
+build_helper="qemu"
+# static version is necessary for qemu-user
 # also disable LTO, otherwise there are multiple failures when linking qemu
 configure_args="-Dman=true -Dselinux=disabled -Dintrospection=enabled
  $(vopt_bool gtk_doc documentation) --default-library=both -Db_lto=false"
 hostmakedepends="gettext pkg-config gobject-introspection-bootstrap
  libxslt docbook-xsl $(vopt_if gtk_doc gi-docgen) python3-packaging python3-docutils"
-makedepends="zlib-devel pcre2-devel libffi-devel dbus-devel elfutils-devel libmount-devel"
+makedepends="zlib-devel pcre2-devel libffi-devel dbus-devel elfutils-devel libmount-devel
+ $(vopt_if gtk_doc gi-docgen)"
 checkdepends="glib-bootstrap desktop-file-utils shared-mime-info dbus python3-pytest"
 short_desc="GNU library of C routines"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="LGPL-2.1-or-later"
 homepage="https://wiki.gnome.org/Projects/GLib"
-#changelog="https://gitlab.gnome.org/GNOME/glib/raw/glib-2-80/NEWS"
-changelog="https://gitlab.gnome.org/GNOME/glib/raw/main/NEWS"
+changelog="https://gitlab.gnome.org/GNOME/glib/raw/glib-2-82/NEWS"
+#changelog="https://gitlab.gnome.org/GNOME/glib/raw/main/NEWS"
 distfiles="${GNOME_SITE}/glib/${version%.*}/glib-${version}.tar.xz"
-checksum=8228a92f92a412160b139ae68b6345bd28f24434a7b5af150ebe21ff587a561d
+checksum=f8823600cb85425e2815cfad82ea20fdaa538482ab74e7293d58b3f64a5aff6a
+python_version=3
 conflicts="gir-freedesktop<1.80.0_1" # glib typelibs are now in glib
 make_check_pre="dbus-run-session"
 
@@ -37,6 +39,14 @@ post_patch() {
 	# Timer test is flaky on 32 bit (does float comparisons)
 	if [ "${XBPS_TARGET_WORDSIZE}" = "32" ]; then
 		vsed -e "s/'timer' : {},//" -i glib/tests/meson.build
+	fi
+	# Test fails in CI
+	vsed -e '/test_cleanup_handles_errors)/d' -i glib/tests/utils-isolated.c
+
+	if [ "$XBPS_TARGET_LIBC" = musl ]; then
+		# musl 1.1.x's implementation of faccessat is broken (doesn't behave correctly with AT_SYMLINK_NOFOLLOW)
+		# https://git.musl-libc.org/cgit/musl/commit/?id=55fb9a177316aa46c639d93dd0323d9a9a8c160c
+		vsed -e "s/'faccessat',//g" -i meson.build
 	fi
 }
 

@@ -1,10 +1,9 @@
 # Template file for 'starship'
 pkgname=starship
-version=1.18.2
+version=1.23.0
 revision=1
 build_style=cargo
 build_helper=qemu
-make_check_args="-- --skip modules::username::tests::show_always_false" # test fails in CI
 hostmakedepends="cmake pkg-config"
 depends="git"
 checkdepends="git fish-shell"
@@ -14,7 +13,7 @@ license="ISC"
 homepage="https://starship.rs"
 changelog="https://raw.githubusercontent.com/starship/starship/master/CHANGELOG.md"
 distfiles="https://github.com/starship/starship/archive/refs/tags/v${version}.tar.gz"
-checksum=505100002efe93dbff702edd82f814cadc340335487993e76dd6777dba461a7a
+checksum=be3ba025a64bd808899dce256e1511145b55cc5eefc5fca82bf5537cd8e09c72
 make_check_pre="env HOME=${wrksrc}/fake-home"
 
 pre_check() {

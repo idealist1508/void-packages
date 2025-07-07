@@ -1,12 +1,12 @@
 # Template file for 'exiftool'
 pkgname=exiftool
-version=12.76
+version=13.03
 revision=1
 build_style=perl-module
 short_desc="Reader and rewriter of EXIF information that supports raw files"
-maintainer="Benjamín Albiñana <benalb@gmail.com>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="Artistic-1.0-Perl, GPL-1.0-or-later"
 homepage="https://exiftool.org/"
 changelog="https://exiftool.org/history.html"
 distfiles="https://exiftool.org/Image-ExifTool-${version}.tar.gz"
-checksum=5d3430ec57aa031f7ca43170f7ed6338a66bda99ab95b9e071f1ee27555f515f
+checksum=0912e1315318889574f355e5832340632c556a14d30711e94d801085ad0a8e4f

@@ -1,6 +1,6 @@
 # Template file for 'dust'
 pkgname=dust
-version=1.0.0
+version=1.2.1
 revision=1
 build_style=cargo
 short_desc="More intuitive version of du"
@@ -8,7 +8,7 @@ maintainer="Neel <neel@chot.ai>"
 license="Apache-2.0"
 homepage="https://github.com/bootandy/dust"
 distfiles="https://github.com/bootandy/dust/archive/refs/tags/v${version}.tar.gz"
-checksum=34b72116ab6db9bdb97bc1e49dadf392a1619838204b44b0a4695539d54ffbe8
+checksum=d8ac1a78287a9ea9e6a0e350886dbef8902f5f1dcba9bbc25afafe2ed2ca0a95
 
 post_install() {
 	vcompletion completions/dust.bash bash

@@ -1,6 +1,6 @@
 # Template file for 'docker-compose'
 pkgname=docker-compose
-version=2.27.0
+version=2.37.1
 revision=1
 build_style=go
 go_import_path="github.com/docker/compose/v2"
@@ -13,10 +13,16 @@ license="Apache-2.0"
 homepage="https://docs.docker.com/compose/"
 changelog="https://github.com/docker/compose/releases"
 distfiles="https://github.com/docker/compose/archive/refs/tags/v${version}.tar.gz"
-checksum=29b2232d1609dff03db74188a7944c85ba8b612f47a7e39938a43db8fb7d7067
+checksum=63fc8a368a900bbba654ca0411cf4d875a3fedcb6a5d89aa8e817495e927a493
 
 post_install() {
 	vmkdir usr/libexec/docker/cli-plugins
 	mv ${DESTDIR}/usr/bin/cmd ${DESTDIR}/usr/libexec/docker/cli-plugins/docker-compose
 	ln -s /usr/libexec/docker/cli-plugins/docker-compose ${DESTDIR}/usr/bin/docker-compose
+}
+
+do_check() {
+	for d in $(go list ./... | grep -v '/pkg/e2e'); do
+		go test "$d"
+	done
 }
